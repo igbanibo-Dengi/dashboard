@@ -8,7 +8,7 @@ import NavSelect from "./navSelect";
 import NavDropDown from "./ui/navDropDown";
 import { DarkModeToggle } from "./ui/darkModeToggle";
 import Link from "next/link";
-import { Menu, MoveRight } from "lucide-react";
+import { Menu, MoveLeft, MoveRight } from "lucide-react";
 
 import { motion } from "framer-motion";
 
@@ -19,11 +19,13 @@ const Navbar = ({ toggle }) => {
   };
 
   return (
-    <nav className="bg-primary w-full px-5 py-3 fixed z-50">
+    <nav className="bg-primary w-full sm:px-5 py-3 fixed z-50">
       <div className=" container w-full flex flex-row justify-between items-center gap-3">
         <div className="flex text-white flex-row gap-8">
           <span className="gap-4 items-center flex">
-            <FaHamburger size={30} />
+            <Link href="/">
+              <FaHamburger size={30} />
+            </Link>
             <Link href="/" className={isHidden ? "hidden" : "hidden sm:block"}>
               Atarodo
             </Link>
@@ -54,21 +56,21 @@ const Navbar = ({ toggle }) => {
 
             <div onClick={toggleClassName} className="block sm:hidden">
               <motion.div
-                initial={{ x: -20 }}
-                transition={{ type: "spring", stiffness: 500 }}
-                whileInView={{ x: 20 }}
-                className={isHidden ? "hidden rotate-180" : "block"}
-              >
-                <MoveRight />
-              </motion.div>
-
-              <motion.div
                 initial={{ x: 20 }}
                 transition={{ type: "spring", stiffness: 500 }}
                 whileInView={{ x: -20 }}
-                className={isHidden ? "block" : "hidden"}
+                className={isHidden ? "hidden " : "block"}
               >
                 <Menu />
+              </motion.div>
+
+              <motion.div
+                initial={{ x: -20 }}
+                transition={{ type: "spring", stiffness: 500 }}
+                whileInView={{ x: 20 }}
+                className={isHidden ? "block" : "hidden"}
+              >
+                <MoveLeft />
               </motion.div>
             </div>
           </span>
